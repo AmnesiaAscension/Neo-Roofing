@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neo Roofing Company Pasadena | The Art of Protection</title>
+    <meta name="description" content="Pasadena's premier boutique roofing specialists. Precision engineering meets high-end architectural aesthetics.">
+    
+    <!-- External Assets -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100;300;400;500;600;700&family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --emerald-400: #34d399;
+            --emerald-500: #10b981;
+            --emerald-600: #059669;
+            --slate-900: #0f172a;
+            --slate-950: #020617;
+        }
+
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            overflow-x: hidden; 
+            background-color: #fff;
+        }
+
+        h1, h2, h3, h4, .font-heading { font-family: 'Outfit', sans-serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--emerald-500); }
+
+        /* Fancy Glassmorphism */
+        .glass { 
+            background: rgba(255, 255, 255, 0.7); 
+            backdrop-filter: blur(20px) saturate(180%); 
+            -webkit-backdrop-filter: blur(20px) saturate(180%); 
+            border: 1px solid rgba(255, 255, 255, 0.3); 
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Mesh Gradients */
+        .hero-mesh { 
+            background-color: var(--slate-950);
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(161, 71%, 48%, 0.15) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(190, 71%, 48%, 0.1) 0, transparent 40%),
+                radial-gradient(at 50% 100%, hsla(161, 71%, 48%, 0.05) 0, transparent 50%); 
+        }
+
+        /* Grain Overlay for Texture */
+        .bg-grain::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animated Underline */
+        .link-underline {
+            position: relative;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            width: 0; height: 2px;
+            bottom: -4px; left: 0;
+            background-color: var(--emerald-500);
+            transition: width 0.3s ease;
+        }
+        .link-underline:hover::after { width: 100%; }
+
+        /* Float Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float { animation: float 6s ease-in-out infinite; }
+
+        /* Magnetic Button Glow */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%; left: 50%;
+            width: 0; height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .btn-glow:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+
+        .nav-scrolled {
+            padding-top: 0.75rem !important;
+            padding-bottom: 0.75rem !important;
+        }
+
+        /* Service Cards Elevation */
+        .service-card {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(16, 185, 129, 0.15);
+        }
+    </style>
+
+    <script type="importmap">
+    {
+      "imports": {
+        "@google/genai": "https://esm.sh/@google/genai@^1.34.0"
+      }
+    }
+    </script>
+</head>
+<body class="bg-white text-slate-900 selection:bg-emerald-100 selection:text-emerald-900 bg-grain">
+
+    <!-- Navigation -->
+    <header id="mainHeader" class="fixed top-0 left-0 w-full z-50 px-4 sm:px-6 lg:px-8 pt-8 transition-all duration-500">
+        <nav class="max-w-7xl mx-auto glass rounded-[24px] shadow-2xl shadow-slate-200/40">
+            <div class="px-8 h-16 sm:h-20 flex justify-between items-center">
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="bg-slate-900 w-11 h-11 rounded-2xl flex items-center justify-center text-white shadow-lg group-hover:bg-emerald-500 transition-all duration-500">
+                        <i class="fa-solid fa-wind text-xl group-hover:rotate-45 transition-transform duration-500"></i>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-bold text-slate-900 leading-none tracking-tight">NEO</span>
+                        <span class="text-[10px] font-bold text-emerald-600 tracking-[0.3em] uppercase opacity-80">Roofing Studio</span>
+                    </div>
+                </a>
+                
+                <div class="hidden lg:flex items-center space-x-12">
+                    <a href="#services" class="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors link-underline">The Solutions</a>
+                    <a href="#process" class="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors link-underline">Our Craft</a>
+                    <a href="#reviews" class="text-sm font-bold text-slate-600 hover:text-emerald-600 transition-colors link-underline">Testimonials</a>
+                    <a href="tel:3466332807" class="btn-glow bg-slate-900 text-white px-8 py-3.5 rounded-[18px] text-sm font-bold hover:bg-emerald-600 transition-all shadow-xl active:scale-95 flex items-center gap-3">
+                        <i class="fa-solid fa-phone-volume text-xs"></i>
+                        (346) 633-2807
+                    </a>
+                </div>
+
+                <button class="lg:hidden text-slate-900 w-12 h-12 flex items-center justify-center bg-slate-50 rounded-xl">
+                    <i class="fa-solid fa-bars-staggered text-xl"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-24 overflow-hidden hero-mesh">
+        <!-- Animated Blobs -->
+        <div class="absolute top-0 right-0 w-full h-full pointer-events-none">
+            <div class="absolute top-[15%] right-[-5%] w-[500px] h-[500px] bg-emerald-500/10 blur-[100px] rounded-full animate-float"></div>
+            <div class="absolute bottom-[10%] left-[-5%] w-[400px] h-[400px] bg-blue-500/5 blur-[100px] rounded-full animate-float" style="animation-delay: -2s"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-8 text-center lg:text-left">
+                    <div class="reveal inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-emerald-400 text-[11px] font-bold uppercase tracking-[0.3em] mb-10">
+                        <span class="relative flex h-2.5 w-2.5">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                        </span>
+                        Master Artisans of Pasadena
+                    </div>
+                    <h1 class="reveal text-6xl sm:text-8xl lg:text-[110px] font-bold text-white leading-[0.9] tracking-tighter mb-10">
+                        Modern <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-teal-400 italic font-light">Armor.</span>
+                    </h1>
+                    <p class="reveal text-xl sm:text-2xl text-slate-400 mb-14 max-w-2xl leading-relaxed font-light" style="transition-delay: 0.2s">
+                        Neo Roofing represents the intersection of structural integrity and architectural beauty. High-performance protection, tailored for Pasadena’s finest properties.
+                    </p>
+                    <div class="reveal flex flex-col sm:flex-row gap-6 justify-center lg:justify-start" style="transition-delay: 0.4s">
+                        <a href="#contact" class="btn-glow bg-emerald-500 text-slate-950 px-12 py-6 rounded-[24px] text-lg font-bold hover:bg-white transition-all shadow-[0_20px_40px_-15px_rgba(16,185,129,0.4)] text-center">
+                            Secure Your Inspection
+                        </a>
+                        <a href="tel:3466332807" class="group flex items-center justify-center gap-6 bg-white/5 text-white border border-white/10 px-10 py-6 rounded-[24px] text-lg font-bold hover:bg-white hover:text-slate-900 transition-all">
+                            <span class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                                <i class="fa-solid fa-phone-flip text-sm"></i>
+                            </span>
+                            Connect with us
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-4 relative hidden lg:block">
+                    <div class="reveal relative z-10 rounded-[60px] overflow-hidden shadow-2xl border border-white/10 transform rotate-1 hover:rotate-0 transition-transform duration-1000" style="transition-delay: 0.6s">
+                        <img src="https://images.unsplash.com/photo-1628413993904-94ecb60f1239?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Architecture" class="w-full h-[650px] object-cover grayscale hover:grayscale-0 transition-all duration-1000">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent to-transparent"></div>
+                        
+                        <div class="absolute bottom-12 left-8 right-8 p-8 glass-dark rounded-[32px] border-emerald-500/20">
+                            <div class="flex items-center gap-5 mb-5">
+                                <div class="flex -space-x-3">
+                                    <img class="w-10 h-10 rounded-full border-2 border-slate-950 ring-4 ring-emerald-500/10" src="https://i.pravatar.cc/100?u=a1" alt="Reviewer">
+                                    <img class="w-10 h-10 rounded-full border-2 border-slate-950 ring-4 ring-emerald-500/10" src="https://i.pravatar.cc/100?u=a2" alt="Reviewer">
+                                    <img class="w-10 h-10 rounded-full border-2 border-slate-950 ring-4 ring-emerald-500/10" src="https://i.pravatar.cc/100?u=a3" alt="Reviewer">
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold text-white tracking-widest uppercase">Verified Excellence</span>
+                                    <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-widest">4.6 Google Rating</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-slate-300 font-light leading-relaxed italic">"A standard of professionalism rarely seen in the industry today."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Process Section -->
+    <section id="process" class="py-32 bg-slate-50 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-24 reveal">
+                <span class="text-[11px] font-black text-emerald-600 uppercase tracking-[0.4em] mb-4 block">The Neo Methodology</span>
+                <h2 class="text-4xl sm:text-6xl font-bold text-slate-950 tracking-tight">Our Craftsmanship Cycle</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="reveal relative p-12 bg-white rounded-[40px] shadow-xl shadow-slate-200/50 group hover:bg-slate-950 transition-all duration-500">
+                    <span class="absolute top-10 right-10 text-8xl font-black text-slate-100 group-hover:text-white/5 transition-colors">01</span>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-emerald-50 rounded-[22px] flex items-center justify-center mb-10 group-hover:bg-emerald-500 transition-colors">
+                            <i class="fa-solid fa-microscope text-2xl text-emerald-600 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-slate-900 group-hover:text-white">Deep Inspection</h3>
+                        <p class="text-slate-500 font-light leading-relaxed group-hover:text-slate-400">Beyond the surface. We use drone thermography to detect invisible moisture and structural fatigue.</p>
+                    </div>
+                </div>
+                <div class="reveal relative p-12 bg-white rounded-[40px] shadow-xl shadow-slate-200/50 group hover:bg-slate-950 transition-all duration-500" style="transition-delay: 0.1s">
+                    <span class="absolute top-10 right-10 text-8xl font-black text-slate-100 group-hover:text-white/5 transition-colors">02</span>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-emerald-50 rounded-[22px] flex items-center justify-center mb-10 group-hover:bg-emerald-500 transition-colors">
+                            <i class="fa-solid fa-bezier-curve text-2xl text-emerald-600 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-slate-900 group-hover:text-white">Bespoke Design</h3>
+                        <p class="text-slate-500 font-light leading-relaxed group-hover:text-slate-400">Materials selected to complement your architecture while exceeding hurricane-grade durability standards.</p>
+                    </div>
+                </div>
+                <div class="reveal relative p-12 bg-white rounded-[40px] shadow-xl shadow-slate-200/50 group hover:bg-slate-950 transition-all duration-500" style="transition-delay: 0.2s">
+                    <span class="absolute top-10 right-10 text-8xl font-black text-slate-100 group-hover:text-white/5 transition-colors">03</span>
+                    <div class="relative z-10">
+                        <div class="w-16 h-16 bg-emerald-50 rounded-[22px] flex items-center justify-center mb-10 group-hover:bg-emerald-500 transition-colors">
+                            <i class="fa-solid fa-medal text-2xl text-emerald-600 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-slate-900 group-hover:text-white">Elite Execution</h3>
+                        <p class="text-slate-500 font-light leading-relaxed group-hover:text-slate-400">White-glove installation with a clean-site guarantee and a lifetime craftsmanship warranty.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-24 gap-12 reveal">
+                <div class="max-w-3xl">
+                    <span class="text-[11px] font-black text-emerald-600 uppercase tracking-[0.4em] mb-4 block">Our Portfolio</span>
+                    <h2 class="text-4xl sm:text-6xl font-bold text-slate-950 tracking-tight mb-8">Specialized Solutions</h2>
+                    <p class="text-xl text-slate-500 font-light leading-relaxed">From ultra-modern metal systems to classical slate and high-efficiency commercial membranes.</p>
+                </div>
+                <div class="shrink-0">
+                    <div class="flex gap-4">
+                        <div class="w-20 h-20 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-emerald-500 hover:text-emerald-500 transition-all cursor-pointer">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </div>
+                        <div class="w-20 h-20 rounded-full border border-slate-200 flex items-center justify-center text-slate-400 hover:border-emerald-500 hover:text-emerald-500 transition-all cursor-pointer">
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="reveal service-card group relative p-12 rounded-[50px] bg-slate-50 border border-slate-100 overflow-hidden">
+                    <div class="absolute top-[-20px] right-[-20px] p-12 opacity-5 group-hover:opacity-10 group-hover:scale-125 transition-all duration-700">
+                        <i class="fa-solid fa-house-chimney text-[120px] text-emerald-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-12 shadow-md group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-house-chimney text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-950 mb-6">Residential</h3>
+                        <p class="text-slate-500 leading-relaxed font-light mb-8">Architectural shingles, genuine slate, and bespoke metal designs for the modern home.</p>
+                        <ul class="space-y-3 text-sm font-medium text-slate-400">
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Lifetime Warranty</li>
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Storm Resistance</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="reveal service-card group relative p-12 rounded-[50px] bg-slate-50 border border-slate-100 overflow-hidden" style="transition-delay: 0.1s">
+                    <div class="absolute top-[-20px] right-[-20px] p-12 opacity-5 group-hover:opacity-10 group-hover:scale-125 transition-all duration-700">
+                        <i class="fa-solid fa-building text-[120px] text-emerald-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-12 shadow-md group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-building text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-950 mb-6">Commercial</h3>
+                        <p class="text-slate-500 leading-relaxed font-light mb-8">High-durability TPO, PVC, and modified bitumen systems for industrial assets.</p>
+                        <ul class="space-y-3 text-sm font-medium text-slate-400">
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Energy Efficient</li>
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Rapid Deployment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="reveal service-card group relative p-12 rounded-[50px] bg-slate-50 border border-slate-100 overflow-hidden" style="transition-delay: 0.2s">
+                    <div class="absolute top-[-20px] right-[-20px] p-12 opacity-5 group-hover:opacity-10 group-hover:scale-125 transition-all duration-700">
+                        <i class="fa-solid fa-shield-virus text-[120px] text-emerald-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-12 shadow-md group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-shield-virus text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-950 mb-6">Preservation</h3>
+                        <p class="text-slate-500 leading-relaxed font-light mb-8">Preventative maintenance programs to double the lifespan of your existing system.</p>
+                        <ul class="space-y-3 text-sm font-medium text-slate-400">
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> 24/7 Monitoring</li>
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Minor Repair Focus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="reveal service-card group relative p-12 rounded-[50px] bg-slate-50 border border-slate-100 overflow-hidden" style="transition-delay: 0.3s">
+                    <div class="absolute top-[-20px] right-[-20px] p-12 opacity-5 group-hover:opacity-10 group-hover:scale-125 transition-all duration-700">
+                        <i class="fa-solid fa-cloud-bolt text-[120px] text-emerald-500"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 bg-white rounded-2xl flex items-center justify-center mb-12 shadow-md group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                            <i class="fa-solid fa-cloud-bolt text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-950 mb-6">Storm Response</h3>
+                        <p class="text-slate-500 leading-relaxed font-light mb-8">Emergency tarping and rapid damage assessment within hours of a major weather event.</p>
+                        <ul class="space-y-3 text-sm font-medium text-slate-400">
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Insurance Support</li>
+                            <li class="flex items-center gap-2 group-hover:text-emerald-600 transition-colors"><i class="fa-solid fa-circle-check text-[10px]"></i> Urgent Mobilization</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-32 bg-slate-950 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-40 -left-40 w-[600px] h-[600px] bg-emerald-500 rounded-full blur-[200px] animate-float"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="text-center max-w-3xl mx-auto mb-28 reveal">
+                <span class="text-[11px] font-black text-emerald-400 uppercase tracking-[0.5em] mb-6 block">Voices of Pasadena</span>
+                <h2 class="text-4xl sm:text-6xl font-bold mb-8 tracking-tighter">Legacy of Satisfaction</h2>
+                <div class="flex items-center justify-center gap-6 p-8 glass-dark rounded-3xl border-white/5 inline-flex">
+                    <span class="text-5xl font-black text-white">4.6</span>
+                    <div class="h-10 w-[1px] bg-white/10"></div>
+                    <div class="flex flex-col items-start">
+                        <div class="flex text-yellow-400 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <span class="text-[10px] text-slate-500 uppercase font-bold tracking-widest mt-1">10 Authentic Reviews</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Testimonial 1 -->
+                <div class="reveal group bg-white/5 border border-white/10 p-12 rounded-[60px] backdrop-blur-xl hover:bg-white/10 transition-all duration-700">
+                    <div class="flex text-emerald-400 gap-1 mb-8">
+                        <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i>
+                    </div>
+                    <p class="text-2xl text-slate-100 font-extralight italic mb-12 leading-relaxed tracking-tight">"A standard of craftsmanship I didn't think existed anymore. Pure art."</p>
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">S</div>
+                        <div>
+                            <h4 class="font-bold text-white tracking-tight">Sarah Mitchell</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mt-1">Property Owner</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="reveal group bg-white/5 border border-white/10 p-12 rounded-[60px] backdrop-blur-xl hover:bg-white/10 transition-all duration-700" style="transition-delay: 0.1s">
+                    <div class="flex text-emerald-400 gap-1 mb-8">
+                        <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i>
+                    </div>
+                    <p class="text-2xl text-slate-100 font-extralight italic mb-12 leading-relaxed tracking-tight">"They handled our complex commercial roof with absolute surgical precision."</p>
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">J</div>
+                        <div>
+                            <h4 class="font-bold text-white tracking-tight">James Donovan</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mt-1">Operations Director</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="reveal group bg-white/5 border border-white/10 p-12 rounded-[60px] backdrop-blur-xl hover:bg-white/10 transition-all duration-700" style="transition-delay: 0.2s">
+                    <div class="flex text-emerald-400 gap-1 mb-8">
+                        <i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i><i class="fa-solid fa-star text-xs"></i>
+                    </div>
+                    <p class="text-2xl text-slate-100 font-extralight italic mb-12 leading-relaxed tracking-tight">"Quick, transparent, and undeniably high quality. Neo is the only choice."</p>
+                    <div class="flex items-center gap-5">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 border border-emerald-500/30 flex items-center justify-center text-emerald-400 font-bold text-xl">E</div>
+                        <div>
+                            <h4 class="font-bold text-white tracking-tight">Elena Rivera</h4>
+                            <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] font-black mt-1">Real Estate Agent</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="reveal bg-slate-950 rounded-[80px] p-8 sm:p-24 overflow-hidden relative shadow-[0_50px_100px_-20px_rgba(15,23,42,0.3)]">
+                <div class="absolute top-0 right-0 w-1/2 h-full bg-emerald-500/5 -skew-x-12 transform origin-top-right"></div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 relative z-10">
+                    <div>
+                        <span class="text-[11px] font-black text-emerald-400 uppercase tracking-[0.5em] mb-6 block">Inquiry Studio</span>
+                        <h2 class="text-5xl sm:text-7xl font-bold text-white mb-10 leading-[0.9] tracking-tighter">Let’s Start <br/> A Conversation.</h2>
+                        <p class="text-slate-400 text-xl mb-16 font-light leading-relaxed">
+                            Our team is ready to provide a technical evaluation of your property. Transparent. Comprehensive. Professional.
+                        </p>
+
+                        <div class="space-y-12">
+                            <div class="flex items-center gap-8 group">
+                                <div class="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center border border-white/10 group-hover:border-emerald-500/50 transition-all duration-500">
+                                    <i class="fa-solid fa-location-arrow text-2xl text-emerald-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.3em] font-black mb-1">Our Location</p>
+                                    <h4 class="font-bold text-white text-lg">3333 Bayshore Blvd, Pasadena</h4>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-8 group">
+                                <div class="w-16 h-16 bg-white/5 rounded-3xl flex items-center justify-center border border-white/10 group-hover:border-emerald-500/50 transition-all duration-500">
+                                    <i class="fa-solid fa-phone-volume text-2xl text-emerald-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-slate-500 uppercase tracking-[0.3em] font-black mb-1">Expert Support</p>
+                                    <h4 class="font-bold text-white text-lg">(346) 633-2807</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-dark p-12 sm:p-16 rounded-[60px] shadow-2xl border-white/5">
+                        <form id="contactForm" class="space-y-8">
+                            <div class="space-y-6">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                    <div class="space-y-3">
+                                        <label class="text-[10px] font-black text-slate-500 uppercase ml-4 tracking-[0.2em]">Full Identity</label>
+                                        <input type="text" required placeholder="John Doe" class="w-full bg-white/5 border border-white/10 text-white rounded-[24px] px-8 py-5 focus:ring-2 focus:ring-emerald-500 focus:outline-none focus:bg-white/10 transition-all placeholder:text-slate-700" />
+                                    </div>
+                                    <div class="space-y-3">
+                                        <label class="text-[10px] font-black text-slate-500 uppercase ml-4 tracking-[0.2em]">Secure Phone</label>
+                                        <input type="tel" required placeholder="+1 (000) 000-0000" class="w-full bg-white/5 border border-white/10 text-white rounded-[24px] px-8 py-5 focus:ring-2 focus:ring-emerald-500 focus:outline-none focus:bg-white/10 transition-all placeholder:text-slate-700" />
+                                    </div>
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="text-[10px] font-black text-slate-500 uppercase ml-4 tracking-[0.2em]">Direct Email</label>
+                                    <input type="email" required placeholder="john@example.com" class="w-full bg-white/5 border border-white/10 text-white rounded-[24px] px-8 py-5 focus:ring-2 focus:ring-emerald-500 focus:outline-none focus:bg-white/10 transition-all placeholder:text-slate-700" />
+                                </div>
+                                <div class="space-y-3">
+                                    <label class="text-[10px] font-black text-slate-500 uppercase ml-4 tracking-[0.2em]">Project Details</label>
+                                    <textarea rows="3" required placeholder="How can we help your home?" class="w-full bg-white/5 border border-white/10 text-white rounded-[24px] px-8 py-5 focus:ring-2 focus:ring-emerald-500 focus:outline-none focus:bg-white/10 transition-all placeholder:text-slate-700"></textarea>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-glow w-full bg-emerald-500 text-slate-950 font-black py-6 rounded-[24px] hover:bg-white transition-all shadow-2xl active:scale-95 flex items-center justify-center gap-4 text-lg">
+                                Dispatch Inquiry <i class="fa-solid fa-paper-plane text-sm"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-32 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-16">
+                <div class="max-w-sm">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="bg-slate-900 w-14 h-14 rounded-2xl flex items-center justify-center text-white shadow-xl">
+                            <i class="fa-solid fa-wind text-2xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-2xl font-bold text-slate-900 block leading-none tracking-tighter">NEO</span>
+                            <span class="text-[11px] font-bold text-emerald-600 tracking-[0.4em] uppercase">Roofing Studio</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 font-light leading-relaxed mb-10">
+                        Pasadena’s elite boutique roofing contractor. We specialize in high-performance structural protection with an emphasis on modern architectural aesthetics.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-14 h-14 rounded-2xl border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 hover:shadow-xl transition-all duration-500"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-14 h-14 rounded-2xl border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 hover:shadow-xl transition-all duration-500"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-14 h-14 rounded-2xl border border-slate-100 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:text-white hover:border-emerald-500 hover:shadow-xl transition-all duration-500"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-16">
+                    <div>
+                        <h5 class="text-[11px] font-black text-slate-900 uppercase tracking-[0.3em] mb-8">Studio</h5>
+                        <ul class="space-y-4">
+                            <li><a href="#services" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">The Solutions</a></li>
+                            <li><a href="#process" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">Our Method</a></li>
+                            <li><a href="#reviews" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">Excellence</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5 class="text-[11px] font-black text-slate-900 uppercase tracking-[0.3em] mb-8">Client Area</h5>
+                        <ul class="space-y-4">
+                            <li><a href="#" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">Privacy Ethics</a></li>
+                            <li><a href="#" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">Terms of Use</a></li>
+                            <li><a href="#" class="text-sm text-slate-500 hover:text-emerald-600 font-medium transition-colors">Career Hub</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-32 pt-12 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-6">
+                <div class="text-[10px] text-slate-400 uppercase tracking-[0.4em] font-medium">
+                    &copy; 2024 NEO ROOFING COMPANY PASADENA &bull; ALL RIGHTS RESERVED
+                </div>
+                <div class="text-[10px] text-emerald-600 uppercase tracking-[0.4em] font-black">
+                    Designed for Excellence
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AI Assistant Floating UI -->
+    <div id="aiContainer" class="fixed bottom-10 right-10 z-[60] flex flex-col items-end">
+        <div id="aiChatWindow" class="hidden w-80 sm:w-[420px] bg-white rounded-[40px] shadow-[0_40px_80px_-20px_rgba(15,23,42,0.3)] border border-slate-100 flex flex-col overflow-hidden mb-6 animate-in fade-in slide-in-from-bottom-12 duration-700 ease-[cubic-bezier(0.34,1.56,0.64,1)]">
+            <div class="bg-slate-950 p-8 text-white flex justify-between items-center">
+                <div class="flex items-center gap-5">
+                    <div class="w-14 h-14 bg-emerald-500 rounded-3xl flex items-center justify-center shadow-[0_10px_20px_-5px_rgba(16,185,129,0.5)]">
+                        <i class="fa-solid fa-feather-pointed text-xl text-slate-950"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg tracking-tight">Neo Concierge</h3>
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(16,185,129,1)]"></span>
+                            <p class="text-[10px] text-slate-500 font-black uppercase tracking-[0.3em]">AI Specialist Online</p>
+                        </div>
+                    </div>
+                </div>
+                <button id="closeAi" class="w-10 h-10 flex items-center justify-center hover:bg-white/10 rounded-2xl transition-all">
+                    <i class="fa-solid fa-chevron-down text-lg"></i>
+                </button>
+            </div>
+
+            <div id="chatMessages" class="chat-scroll h-[450px] overflow-y-auto p-8 space-y-8 bg-white">
+                <!-- Initial Bot Message -->
+                <div class="flex justify-start animate-fade-in">
+                    <div class="max-w-[85%] p-6 rounded-[28px] text-[14px] leading-relaxed bg-slate-50 text-slate-700 rounded-tl-none border border-slate-100 font-light">
+                        Greetings. I'm the Neo digital concierge. How may I assist you with your Pasadena roofing inquiry today?
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-slate-50 border-t border-slate-100 flex gap-4">
+                <input id="aiInput" type="text" placeholder="Type your inquiry..." class="flex-1 bg-white border border-slate-200 rounded-[20px] px-6 py-4 text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition-all font-medium" />
+                <button id="sendAi" class="bg-slate-950 text-white w-14 h-14 rounded-[20px] flex items-center justify-center hover:bg-emerald-500 transition-all shadow-xl active:scale-95 group">
+                    <i class="fa-solid fa-arrow-up text-lg group-hover:scale-110 transition-transform"></i>
+                </button>
+            </div>
+        </div>
+
+        <button id="toggleAi" class="w-20 h-20 bg-emerald-500 text-slate-950 rounded-[28px] shadow-[0_20px_40px_-10px_rgba(16,185,129,0.4)] hover:bg-slate-950 hover:text-white hover:translate-y-[-8px] transition-all duration-500 flex items-center justify-center ring-[12px] ring-emerald-500/10 active:scale-90">
+            <i id="aiToggleIcon" class="fa-solid fa-sparkles text-3xl"></i>
+        </button>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module">
+        import { GoogleGenAI } from "@google/genai";
+
+        // Business Logic
+        const apiKey = "undefined"; // Handled by environment in runtime
+        let ai = null;
+        if (apiKey && apiKey !== "undefined") {
+            ai = new GoogleGenAI({ apiKey });
+        }
+
+        // Reveal on Scroll Logic
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Scroll Effect for Header
+        const header = document.getElementById('mainHeader');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('nav-scrolled');
+                header.classList.remove('pt-8');
+            } else {
+                header.classList.remove('nav-scrolled');
+                header.classList.add('pt-8');
+            }
+        });
+
+        // AI Assistant Elements
+        const aiChatWindow = document.getElementById('aiChatWindow');
+        const toggleAiBtn = document.getElementById('toggleAi');
+        const aiToggleIcon = document.getElementById('aiToggleIcon');
+        const closeAiBtn = document.getElementById('closeAi');
+        const sendAiBtn = document.getElementById('sendAi');
+        const aiInput = document.getElementById('aiInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        const addMessage = (role, text) => {
+            const wrapper = document.createElement('div');
+            wrapper.className = `flex ${role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in`;
+            
+            const msg = document.createElement('div');
+            msg.className = `max-w-[85%] p-6 rounded-[28px] text-[14px] leading-relaxed shadow-sm font-light ${
+                role === 'user' 
+                ? 'bg-emerald-600 text-white rounded-tr-none shadow-emerald-100' 
+                : 'bg-slate-50 text-slate-700 rounded-tl-none border border-slate-100'
+            }`;
+            msg.innerText = text;
+            
+            wrapper.appendChild(msg);
+            chatMessages.appendChild(wrapper);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        const showLoading = () => {
+            const loader = document.createElement('div');
+            loader.id = 'aiLoader';
+            loader.className = 'flex justify-start animate-fade-in';
+            loader.innerHTML = `
+                <div class="bg-slate-50 border border-slate-100 p-6 rounded-[28px] rounded-tl-none">
+                    <div class="flex space-x-2">
+                        <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce"></div>
+                        <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce delay-100"></div>
+                        <div class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-bounce delay-200"></div>
+                    </div>
+                </div>
+            `;
+            chatMessages.appendChild(loader);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        };
+
+        const hideLoading = () => {
+            const loader = document.getElementById('aiLoader');
+            if (loader) loader.remove();
+        };
+
+        const handleSend = async () => {
+            const text = aiInput.value.trim();
+            if (!text) return;
+            
+            aiInput.value = '';
+            addMessage('user', text);
+            showLoading();
+
+            try {
+                if (!ai) throw new Error("AI Client not initialized");
+                
+                const response = await ai.models.generateContent({
+                    model: "gemini-3-flash-preview",
+                    contents: text,
+                    config: {
+                        systemInstruction: "You are the 'Neo Concierge', a digital advisor for Neo Roofing Company in Pasadena, TX. You represent the pinnacle of professional roofing services. Your tone is refined, expert, and reassuring. If users ask for quotes or specific pricing, ask them to call (346) 633-2807 for a technical inspection. Always refer to Neo's work as 'The Art of Protection'.",
+                        temperature: 0.6,
+                    }
+                });
+                
+                hideLoading();
+                addMessage('bot', response.text || "I apologize, I'm unable to process that at this moment. Please call our Pasadena office at (346) 633-2807.");
+            } catch (err) {
+                hideLoading();
+                addMessage('bot', "Technical interruption. Please connect with our team directly at (346) 633-2807 for immediate expert assistance.");
+                console.error(err);
+            }
+        };
+
+        toggleAiBtn.addEventListener('click', () => {
+            const isHidden = aiChatWindow.classList.contains('hidden');
+            if (isHidden) {
+                aiChatWindow.classList.remove('hidden');
+                aiToggleIcon.className = 'fa-solid fa-minus text-3xl';
+            } else {
+                aiChatWindow.classList.add('hidden');
+                aiToggleIcon.className = 'fa-solid fa-sparkles text-3xl';
+            }
+        });
+
+        closeAiBtn.addEventListener('click', () => {
+            aiChatWindow.classList.add('hidden');
+            aiToggleIcon.className = 'fa-solid fa-sparkles text-3xl';
+        });
+
+        sendAiBtn.addEventListener('click', handleSend);
+        aiInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleSend();
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert("Inquiry successfully dispatched. Our specialists will connect with you shortly.");
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
